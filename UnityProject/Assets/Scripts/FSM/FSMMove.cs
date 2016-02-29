@@ -22,7 +22,7 @@ public class FSMMove : FSMUnit {
 	void Init()
 	{
 	   Priority = FSMPRIORITYTYPE.ACTION_MOVE;
-           FSMType = "move";
+       FSMType = "move";
 	}
 	public FSMMove(){Init();}
 	public FSMMove(ECObject mover, Vector3 desPos)
@@ -44,9 +44,9 @@ public class FSMMove : FSMUnit {
 	}
 	public override bool Run()
 	{
-           if(IsNearDesPos())
+       if(IsNearDesPos())
 	   {
-		return false;
+			return false;
 	   }
 	   m_object
 	   m_objct.AddAction(
