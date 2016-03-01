@@ -3,8 +3,9 @@ using System.Collections;
 
 public class FSMMove : FSMUnit {
 	Vector3 m_desPos;
-	ECObject  m_objct;
+	ECObject  m_object;
 	int speed = 2;
+
 	public ECObject Mover
 	{
 	  get{return m_object;}
@@ -15,7 +16,7 @@ public class FSMMove : FSMUnit {
 	{
 	   set
 	   {
-              DesPos=value;
+              m_desPos=value;
 	   }
 	}
 	
@@ -25,17 +26,18 @@ public class FSMMove : FSMUnit {
        FSMType = "move";
 	}
 	public FSMMove(){Init();}
-	public FSMMove(ECObject mover, Vector3 desPos)
+	public FSMMove(ECObject mover, Vector3 desPos,RunHandlerDelegate func)
 	{
 	   Init();
 	   this.DesPos=desPos;
 	   this.Mover = mover;
+	   this.m_runHandle=func;
 	}
 	
 	bool IsNearDesPos()
-	{
+	{ 
 		
-	   if(System.Math.Abs(m_objct.CurPos.x-m_desPos.x)<2)
+	   if(System.Math.Abs(m_object.transform.position.x-m_desPos.x)<2)
 	   {
 		   return true;
 	   }
@@ -48,7 +50,11 @@ public class FSMMove : FSMUnit {
 	   {
 			return false;
 	   }
-	   m_object
-	   m_objct.AddAction(
+	   
+	   Vector3 newDir=(m_desPos-m_object.transform.position).normalized;
+
+	   m_object.transform.position = m_object.transform.position+newDir*speed;
+	   m_runHandle();
+	   return true;
 	}
 }

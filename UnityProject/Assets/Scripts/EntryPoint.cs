@@ -11,11 +11,21 @@ public class EntryPoint : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-             if (Input.GetKeyDown(KeyCode.D)
+         if (Input.GetKeyDown(KeyCode.D))
 	     {
-	     	Debug.Log("ss");
-
+	     	Vector3 pos = ECHostPlayer.Instance().transform.position;
+	     	pos.x=pos.x+20;
+	     	FSMMove moveState = new FSMMove(ECHostPlayer.Instance(),pos,ECHostPlayer.Instance().Move);
+	     	ECHostPlayer.Instance().MyFSMList.StrongPush(moveState);
 	     }
-			  
-	}
+	     else if (Input.GetKeyDown(KeyCode.A))
+	     {
+	     	Vector3 pos = ECHostPlayer.Instance().transform.position;
+	     	pos.x=pos.x-20;
+	     	FSMMove moveState = new FSMMove(ECHostPlayer.Instance(),pos,ECHostPlayer.Instance().Move);
+	     	ECHostPlayer.Instance().MyFSMList.StrongPush(moveState);
+	     }
+		
+
+	} 
 }
