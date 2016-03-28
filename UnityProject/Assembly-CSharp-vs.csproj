@@ -49,11 +49,16 @@
      <Compile Include="Assets\Scripts\Action\Action.cs" />
      <Compile Include="Assets\Scripts\Action\Move.cs" />
      <Compile Include="Assets\Scripts\ECObject.cs" />
+     <Compile Include="Assets\Scripts\ECWorld\WorldCoordinate.cs" />
+     <Compile Include="Assets\Scripts\ECWorld\WorldCoordinateUnit.cs" />
      <Compile Include="Assets\Scripts\EntryPoint.cs" />
      <Compile Include="Assets\Scripts\FSM\FSMList.cs" />
      <Compile Include="Assets\Scripts\FSM\FSMMove.cs" />
      <Compile Include="Assets\Scripts\FSM\FSMUnit.cs" />
      <Compile Include="Assets\Scripts\Player\ECHostPlayer.cs" />
+     <Compile Include="Assets\Scripts\Skill\Skill.cs" />
+     <Compile Include="Assets\Scripts\Task\TaskManager.cs" />
+     <Compile Include="Assets\Scripts\Task\TaskUnit.cs" />
      <Compile Include="Assets\Scripts\TestEffect.cs" />
      <Compile Include="Assets\Scripts\TestTex.cs" />
      <None Include="Assets\Shaders\UnLit_transparent.shader" />
