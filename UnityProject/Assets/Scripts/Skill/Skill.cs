@@ -1,6 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+enum SKILLFORCE
+{
+	YVY=0;
+	YOYO=1;
+	JINGJING=2;
+}
+
 public abstract class Skill  {
 
 	long m_id=0;
@@ -26,6 +33,7 @@ public abstract class Skill  {
 		get{return m_hurtCoefficient;}
 	}
 
+	public SKILLFORCE ForceID = SKILLFORCE.YVY;
 	private Transform m_root=null;
 
 	public Skill(int life,int attack,int hurtCoefficient, Transform root )
@@ -46,4 +54,6 @@ public abstract class Skill  {
     public abstract void Effect();
 
     public virtual void Over(){};
+
+
 }
