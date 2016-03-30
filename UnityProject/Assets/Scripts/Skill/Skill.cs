@@ -14,10 +14,7 @@ public abstract class Skill  {
 	public long ID{
 		get{return m_id;}
 	}
-	int m_faction=0;
-	public int Faction{
-		get{return m_faction;}
-	}
+	
 	int m_life=0;
 	public int Life{
 		get{return m_life;}
@@ -33,7 +30,20 @@ public abstract class Skill  {
 		get{return m_hurtCoefficient;}
 	}
 
+
 	public SKILLFORCE ForceID = SKILLFORCE.YVY;
+	public int SkillHurtRange = 0;
+
+	public void GetCollide()
+	{
+		++SkillHurtRange;
+	}
+
+	public void Clear()
+	{
+		SkillHurtRange=0;
+	}
+
 	private Transform m_root=null;
 
 	public Skill(int life,int attack,int hurtCoefficient, Transform root )
@@ -44,16 +54,39 @@ public abstract class Skill  {
 		this.m_root=root;
 	}
 
+	private int m_Index = 0;
+	public Skill Born()
+	{
+
+		this.m_Index = SkillManager.Instance.AddSkill(this);
+		return this;
+	}
+
+	public Skill Clone (Skill s)
+	{
+		this.m_life=s.m_life;
+		this.m_attack=s.m_attack;
+		this.m_hurtCoefficient=s.m_hurtCoefficient;
+		this.m_root=s.m_root;
+		return this;
+	}
+
+	public void Over()
+	{
+		SkillManager.Instance.RemoveSkill(this.m_Index);
+	}
 	public  virtual int GetHurt()
 	{
 		return Attack*HurtCoefficient;
 	}
 
-	public abstract void Run();
+	public virtual void Run(){}
 
-    public abstract void Effect();
+    public virtual void Effect(){}
 
-    public virtual void Over(){};
+    public virtual void Over(){}
+
+
 
 
 }

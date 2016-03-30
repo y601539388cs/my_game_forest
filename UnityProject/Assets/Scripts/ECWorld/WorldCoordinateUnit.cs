@@ -10,6 +10,14 @@ public class Force {
 	  	skillList[DartNum]=s;
 	  	DartNum=DartNum+1;
 	}
+
+	public void GetSkillHurt()
+	{
+		for(int i=0;i<DartNum;++i)
+		{
+			skillList[i].GetCollide();
+		}	
+	}
 }
 
 public class WorldCoordinateUnit  {
@@ -26,8 +34,23 @@ public class WorldCoordinateUnit  {
 	  }
 	  
 
-	  void Clear()
+	  public void Clear()
 	  {
+	  	for(int i=0;i<3;++i)
+	  	{
+	  		forcelists[i].DartNum=0;
+	  	}
+	  	this.DartNum  = 0;
+	  }
 
+	  public void GetSkillHurt()
+	  {
+	  	for(int i=0;i<3;++i)
+	  	{
+	  		if(forcelists[i].DartNum>0)
+	  		{
+	  			forcelists[i].GetSkillHurt();
+	  		}
+	  	}
 	  }
 }
