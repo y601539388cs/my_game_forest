@@ -15,12 +15,12 @@ public abstract class Skill  {
 		get{return m_id;}
 	}
 	
-	int m_life=0;
-	public int Life{
+	double m_life=0;
+	public double Life{
 		get{return m_life;}
 	}
-	int m_attack=0;
-	public int Attack{
+	double m_attack=0;
+	public double Attack{
 		get{return m_attack;}
 	}
 
@@ -39,11 +39,28 @@ public abstract class Skill  {
 		++SkillHurtRange;
 	}
 
+	public double HurtUnit = 0;
+
+	public void GetHurtUnit()
+	{
+		if(SkillHurtRange>0)
+		{
+			HurtUnit=Attack/SkillHurtRange;
+		}
+	}
 	public void Clear()
 	{
 		SkillHurtRange=0;
 	}
 
+	public void BeAttacked(double attackNum)
+	{
+		Life-=attackNum;
+		if(Life<=0)
+		{
+			Over();
+		}
+	}
 	private Transform m_root=null;
 
 	public Skill(int life,int attack,int hurtCoefficient, Transform root )
@@ -74,17 +91,24 @@ public abstract class Skill  {
 	public void Over()
 	{
 		SkillManager.Instance.RemoveSkill(this.m_Index);
+		PlayOver();
 	}
 	public  virtual int GetHurt()
 	{
 		return Attack*HurtCoefficient;
 	}
 
+	public virtual void FreshSkillScope()
+	{
+		
+	}
 	public virtual void Run(){}
 
     public virtual void Effect(){}
 
-    public virtual void Over(){}
+    public virtual void PlayOver(){
+    	Debug.Log("~~~~~~~~~~~~~~~~~"+m_id+"~~destory~");
+    }
 
 
 
