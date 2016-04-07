@@ -11,7 +11,7 @@ public class SkillManager {
 	private List<Skill>  m_curSkillList = new List<Skill>();
 	public void GetSkillHurt()
     {
-    	for(int i=0;i<world_cord.Hight;++i)
+    	for(int i=0;i<world_cord.Height;++i)
     	{
     		for(int j=0;j<world_cord.Width;++j)
     		{
@@ -41,7 +41,7 @@ public class SkillManager {
     }
     public void GetCollideResult()
     {
-    	for(int i=0;i<world_cord.Hight;++i)
+    	for(int i=0;i<world_cord.Height;++i)
         {
             for(int j=0;j<world_cord.Width;++j)
             {
@@ -58,8 +58,34 @@ public class SkillManager {
             m_curSkillList[i].FreshSkillScope();
         }  
     }
+
+    public void Clear()
+    {
+        for(int i=0;i<world_cord.Height;++i)
+        {
+            for(int j=0;j<world_cord.Width;++j)
+            {
+                
+                world_cord.InfoMap[j,i].Clear(); 
+            }
+        }
+
+        for(int i=0;i<m_curSkillList.Count;++i)
+        {
+            m_curSkillList[i].Clear();
+        }
+    }
+
+    public void Run()
+    {
+        for(int i=0;i<m_curSkillList.Count;++i)
+        {
+            m_curSkillList[i].Run();
+        }
+    }
     public void FreshAttack()
     {
+        Clear();
         FreshSkillScope();
         GetSkillHurt();
         GetHurtUnit();

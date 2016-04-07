@@ -4,12 +4,20 @@ using System.Collections;
 public class EntryPoint : MonoBehaviour {
 	
 	// Use this for initialization
+	SkillManager m_skillManager = SkillManager.Instance;
 	void Start () {
 
-	
+		
 	}
 	
 	// Update is called once per frame
+
+	void Run()
+	{
+		m_skillManager.Run();
+		m_skillManager.FreshAttack();
+	}
+
 	void Update () {
          if (Input.GetKeyDown(KeyCode.D))
 	     {
@@ -26,6 +34,6 @@ public class EntryPoint : MonoBehaviour {
 	     	ECHostPlayer.Instance().MyFSMList.StrongPush(moveState);
 	     }
 		
-
+	     Run();
 	} 
 }

@@ -8,6 +8,7 @@ public enum SKILLFORCE
 	JINGJING=2,
 }
 
+
 public abstract class Skill  {
 
 	protected long m_id=0;
@@ -64,6 +65,10 @@ public abstract class Skill  {
 	}
 	protected Transform m_root=null;
 
+	public Skill()
+	{
+
+	}
 	public Skill(int life,int attack,int hurtCoefficient, Transform root )
 	{
 		this.m_life=life;
