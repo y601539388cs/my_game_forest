@@ -8,7 +8,7 @@ public class SkillManager {
 	
 	private WorldCoordinate world_cord = WorldCoordinate.Instance;
 
-	private ArrayList  m_curSkillList = new ArrayList();
+	private List<Skill>  m_curSkillList = new List<Skill>();
 	public void GetSkillHurt()
     {
     	for(int i=0;i<world_cord.Hight;++i)
@@ -22,8 +22,10 @@ public class SkillManager {
     }
 
     public int AddSkill(Skill s)
-    {
-    	return m_curSkillList.add(s);
+    {   
+        int index = m_curSkillList.Count;
+        m_curSkillList.Add(s);
+    	return index;
     }
 
     public void RemoveSkill (int index)

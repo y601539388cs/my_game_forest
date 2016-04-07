@@ -50,7 +50,7 @@ public class WorldCoordinateUnit  {
 
 	  public void AddSkill(Skill s)
 	  {
-	  	forcelists[s.ForceID].AddSkill(s);
+	  	forcelists[(int)s.ForceID].AddSkill(s);
 	  	DartNum=DartNum+1;
 	  }
 	  
@@ -89,7 +89,6 @@ public class WorldCoordinateUnit  {
 	  	double allHurt =0;
 	  	for(int i=0;i<ForceNum;++i)
 	  	{	
-	  		GetAllHurt()
 	  		allHurt+=forcelists[i].GetAllHurt();
 	  	}
 

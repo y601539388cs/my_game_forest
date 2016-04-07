@@ -1,30 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-enum SKILLFORCE
+public enum SKILLFORCE
 {
-	YVY=0;
-	YOYO=1;
-	JINGJING=2;
+	YVY=0,
+	YOYO=1,
+	JINGJING=2,
 }
 
 public abstract class Skill  {
 
-	long m_id=0;
+	protected long m_id=0;
 	public long ID{
 		get{return m_id;}
 	}
 	
-	double m_life=0;
+	protected double m_life=0;
 	public double Life{
 		get{return m_life;}
+		set{m_life = value;}
 	}
-	double m_attack=0;
+	protected double m_attack=0;
 	public double Attack{
 		get{return m_attack;}
 	}
 
-	int  m_hurtCoefficient=0;
+	protected int  m_hurtCoefficient=0;
 	public int HurtCoefficient
 	{
 		get{return m_hurtCoefficient;}
@@ -61,7 +62,7 @@ public abstract class Skill  {
 			Over();
 		}
 	}
-	private Transform m_root=null;
+	protected Transform m_root=null;
 
 	public Skill(int life,int attack,int hurtCoefficient, Transform root )
 	{
@@ -93,14 +94,14 @@ public abstract class Skill  {
 		SkillManager.Instance.RemoveSkill(this.m_Index);
 		PlayOver();
 	}
-	public  virtual int GetHurt()
+	public  virtual double GetHurt()
 	{
 		return Attack*HurtCoefficient;
 	}
 
 	public virtual void FreshSkillScope()
 	{
-		
+
 	}
 	public virtual void Run(){}
 

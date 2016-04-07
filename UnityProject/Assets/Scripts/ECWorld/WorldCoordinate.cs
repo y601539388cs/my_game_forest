@@ -6,12 +6,16 @@ public class WorldCoordinate {
 
 
 
-	public Vector3 RootPos = null;
-	public Vector3 LeftRightPos= null;
+	public Vector3 RootPos;
+	public Vector3 LeftRightPos;
     public int Width = 100;
     public int Hight = 100;
-
-    public WorldCoordinateUnit InfoMap[,] = new WorldCoordinateUnit[Width,Hight];
+    public WorldCoordinateUnit [,] InfoMap;
+    private WorldCoordinate()
+    {
+    	InfoMap =  new  WorldCoordinateUnit[Width,Hight];
+    }
+    
 
     public static WorldCoordinate Instance = new WorldCoordinate();
 
