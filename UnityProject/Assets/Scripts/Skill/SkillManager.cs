@@ -6,8 +6,9 @@ public class SkillManager {
 
 	public static SkillManager Instance = new SkillManager();
 	
+    public WorldTest m_worldTest;
 	private WorldCoordinate world_cord = WorldCoordinate.Instance;
-
+    
 	private List<Skill>  m_curSkillList = new List<Skill>();
 	public void GetSkillHurt()
     {
@@ -30,12 +31,13 @@ public class SkillManager {
 
     public void RemoveSkill (int index)
     {
-        m_curSkillList.RemoveAt(index);
+        m_curSkillList[index]=SkillNone.Instance;
     }
     public void GetHurtUnit()
     {
        for(int i=0;i<m_curSkillList.Count;++i)
-        {
+        {   
+
             m_curSkillList[i].GetHurtUnit();
         } 
     }
@@ -57,8 +59,16 @@ public class SkillManager {
         {
             m_curSkillList[i].FreshSkillScope();
         }  
+        Debug.Log("~~FreshSkillScope~~~"+m_curSkillList.Count);
     }
 
+    public void Run()
+    {
+        for(int i=0;i<m_curSkillList.Count;++i)
+        {
+            m_curSkillList[i].Run();
+        } 
+    }
     public void Clear()
     {
         for(int i=0;i<world_cord.Height;++i)
@@ -67,6 +77,7 @@ public class SkillManager {
             {
                 
                 world_cord.InfoMap[j,i].Clear(); 
+
             }
         }
 
@@ -74,15 +85,11 @@ public class SkillManager {
         {
             m_curSkillList[i].Clear();
         }
+
+        m_worldTest.Clear();
     }
 
-    public void Run()
-    {
-        for(int i=0;i<m_curSkillList.Count;++i)
-        {
-            m_curSkillList[i].Run();
-        }
-    }
+   
     public void FreshAttack()
     {
         Clear();

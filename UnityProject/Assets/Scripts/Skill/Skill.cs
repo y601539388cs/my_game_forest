@@ -36,32 +36,33 @@ public abstract class Skill  {
 	public SKILLFORCE ForceID = SKILLFORCE.YVY;
 	public int SkillHurtRange = 0;
 
-	public void GetCollide()
+	public virtual void GetCollide()
 	{
 		++SkillHurtRange;
 	}
 
 	public double HurtUnit = 0;
 
-	public void GetHurtUnit()
+	public virtual void GetHurtUnit()
 	{
 		if(SkillHurtRange>0)
 		{
 			HurtUnit=Attack/SkillHurtRange;
 		}
 	}
-	public void Clear()
+	public virtual void Clear()
 	{
 		SkillHurtRange=0;
 	}
 
-	public void BeAttacked(double attackNum)
+	public virtual void BeAttacked(double attackNum)
 	{
 		Life-=attackNum;
 		if(Life<=0)
 		{
 			Over();
 		}
+
 	}
 	protected Transform m_root=null;
 
@@ -78,14 +79,14 @@ public abstract class Skill  {
 	}
 
 	private int m_Index = 0;
-	public Skill Born()
+	public virtual Skill Born()
 	{
 
 		this.m_Index = SkillManager.Instance.AddSkill(this);
 		return this;
 	}
 
-	public Skill Clone (Skill s)
+	public virtual Skill Clone (Skill s)
 	{
 		this.m_life=s.m_life;
 		this.m_attack=s.m_attack;
@@ -94,7 +95,7 @@ public abstract class Skill  {
 		return this;
 	}
 
-	public void Over()
+	public virtual void Over()
 	{
 		SkillManager.Instance.RemoveSkill(this.m_Index);
 		PlayOver();

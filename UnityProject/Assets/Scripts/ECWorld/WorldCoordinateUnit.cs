@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Force {
 	public int DartNum = 0;
 	Skill [] skillList = new Skill[10];
-	
+
 	public void AddSkill(Skill s)
 	{
 	  	skillList[DartNum]=s;
@@ -43,10 +43,19 @@ public class Force {
 
 public class WorldCoordinateUnit  {
 
-	  public const int ForceNum = 2;
+	  public const int ForceNum = 3;
 	  public int Legnth = 5;
       public int DartNum = 0;
+
 	  Force [] forcelists = new Force[ForceNum];
+
+	  public WorldCoordinateUnit()
+	  {
+	  	for(int i=0;i<ForceNum;++i)
+	  	{
+	  		forcelists[i]=new Force();
+	  	}
+	  }
 
 	  public void AddSkill(Skill s)
 	  {
@@ -82,6 +91,7 @@ public class WorldCoordinateUnit  {
 
 	  public void GetCollideResult()
 	  {
+	  	
 	  	if(DartNum<2)
 	  	{
 	  		return;

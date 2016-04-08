@@ -149,7 +149,7 @@ public class WorldTest : MonoBehaviour {
         mesh = meshFilter.mesh;
 
 
-
+        SkillManager.Instance.m_worldTest = this;
 
 
 
@@ -161,11 +161,23 @@ public class WorldTest : MonoBehaviour {
 
     int index=0;
     void Update () 
-
-
     {
+        UpdateGrid();
+    }
 
+    public void Clear()
+    {
+        for(int i=0;i<m_width;++i)
+        {
+            for(int j=0;j<m_height;++j)
+            {
+               SetGridColor(i,j,Color.green);
+            }
+        }
+    }
 
+    public void UpdateGrid()
+    {
        // 清除mesh信息，下面可以做相应的mesh动画
 
 
@@ -177,28 +189,18 @@ public class WorldTest : MonoBehaviour {
 
 
         //mesh.uv = m_uv;
-
+        /**
         SetGridColor(index,10,Color.red);
         if(index>=1)
         {
-             SetGridColor(index-1,10,Color.green);
+             SetGridColor(index-1,10,Color.gre);
         }
         index=(index+1)%m_width;
-
+            **/
         mesh.colors = m_color;  
 
         mesh.triangles = m_triangles;
       //  mesh.normals = m_normals;
-
-
-        
-
-
-       // mesh.RecalculateNormals();
-
-
-        
-
 
     }
 

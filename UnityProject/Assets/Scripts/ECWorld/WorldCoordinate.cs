@@ -11,9 +11,23 @@ public class WorldCoordinate {
     public int Width = 100;
     public int Height = 50;
     public WorldCoordinateUnit [,] InfoMap;
+    
     private WorldCoordinate()
     {
-    	InfoMap =  new  WorldCoordinateUnit[Width,Hight];
+
+    	InfoMap =  new  WorldCoordinateUnit[Width,Height];
+        for(int i=0;i<Width;++i)
+        {
+            for(int j=0;j<Height;++j)
+            {
+                InfoMap[i,j]=new WorldCoordinateUnit();
+            }
+        }
+
+      
+            
+
+
     }
     
 
@@ -21,9 +35,10 @@ public class WorldCoordinate {
 
     public void AddSkill(int i,int j,Skill s)
     {
-    	if(i>=0 && i<= Width && j>=0 &&j<=Height)
+    	if(i>=0 && i<Width && j>=0 &&j<Height)
     	{
-    		WorldCoordinateUnit[i,j].AddSkill(s);
+    		InfoMap[i,j].AddSkill(s);
+            SkillManager.Instance.m_worldTest.SetGridColor(i,j,Color.red);
     	}
     	
     }
