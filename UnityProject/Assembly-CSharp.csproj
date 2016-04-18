@@ -76,6 +76,7 @@
      <Compile Include="Assets\DynamicFire\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Scripts\Action\Action.cs" />
      <Compile Include="Assets\Scripts\Action\Move.cs" />
+     <Compile Include="Assets\Scripts\Camera\MainCamera.cs" />
      <Compile Include="Assets\Scripts\ECObject.cs" />
      <Compile Include="Assets\Scripts\ECWorld\WorldCoordinate.cs" />
      <Compile Include="Assets\Scripts\ECWorld\WorldCoordinateUnit.cs" />
@@ -187,6 +188,7 @@
      <None Include="Assets\Stylized Nature Pack\Demo Scene\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\VignetteShader.shader" />
      <None Include="Assets\Stylized Nature Pack\Demo Scene\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA2.shader" />
      <None Include="Assets\Stylized Nature Pack\Demo Scene\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
+     <None Include="Assets\iMG Explosion FX\ReadME.txt" />
      <None Include="Assets\Stylized Nature Pack\Demo Scene\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurves.shader" />
      <None Include="Assets\Stylized Nature Pack\Demo Scene\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
      <None Include="Assets\Ancient Environment\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\DepthOfField34.shader" />
