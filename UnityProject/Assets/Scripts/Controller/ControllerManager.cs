@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ControllerManager  {
 	private ControllerManager()
@@ -12,7 +13,7 @@ public class ControllerManager  {
 
 	public void AddListener(ECController c)
 	{
-		m_listeners.add(c);
+		m_listeners.Add(c);
 	}
 
 	public void Listen()

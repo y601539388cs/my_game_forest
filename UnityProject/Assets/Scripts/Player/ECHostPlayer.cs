@@ -3,7 +3,8 @@ using System.Collections;
 
 public class ECHostPlayer :  ECObject{
 	private ECHostPlayer(){}
-	static ECHostPlayer m_inst;
+	
+	//状态机
 	FSMList m_FSMList = new FSMList();
 	public FSMList MyFSMList
 	{
@@ -11,14 +12,10 @@ public class ECHostPlayer :  ECObject{
 		private set{}
 	}
 
-	public static ECHostPlayer Instance ()
-	{
-	   if (m_inst==null) 
-	   {
-	      
-	   }
-	   return m_inst;
-	}
+	public static ECHostPlayer Instance = new ECHostPlayer();
+	
+	//控制器
+	private ECHostController m_ctroller = ECHostController.Instance;
 
 	public void Move()
 	{
@@ -27,7 +24,7 @@ public class ECHostPlayer :  ECObject{
 
 	void Start()
 	{
-		m_inst=this;
+		
 	}
 	void Update () {
 		m_FSMList.Run();
