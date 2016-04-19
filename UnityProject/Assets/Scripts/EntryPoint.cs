@@ -6,7 +6,9 @@ public class EntryPoint : MonoBehaviour {
 	// Use this for initialization
 	//SkillManager m_skillManager = SkillManager.Instance;
 	ControllerManager m_controllerManager = ControllerManager.Instance;
+	ECObjectManager m_objectManager = ECObjectManager.Instance;
 	ECHostPlayer m_host;
+
 	//test
 	//Skill_FireBall m_fireBall;
 	//Skill_FireBall m_fireBall_op;
@@ -14,6 +16,7 @@ public class EntryPoint : MonoBehaviour {
 	void Start () {
 
 		 InitGame();
+		 m_objectManager.Start();
 	}
 	
 	
@@ -41,8 +44,6 @@ public class EntryPoint : MonoBehaviour {
 
 	void Update () {
 		 m_controllerManager.Listen();
-         
-		
-	     Run();
+         m_objectManager.Update();
 	} 
 }

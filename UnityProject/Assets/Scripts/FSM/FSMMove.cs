@@ -4,7 +4,7 @@ using System.Collections;
 public class FSMMove : FSMUnit {
 	Vector3 m_desPos;
 	ECObject  m_object;
-	int speed = 2;
+	float speed = 0.1f;
 
 	public ECObject Mover
 	{
@@ -37,7 +37,7 @@ public class FSMMove : FSMUnit {
 	bool IsNearDesPos()
 	{ 
 		
-	   if(System.Math.Abs(m_object.transform.position.x-m_desPos.x)<2)
+	   if(System.Math.Abs(m_object.transform.position.x-m_desPos.x)<0.1f)
 	   {
 		   return true;
 	   }

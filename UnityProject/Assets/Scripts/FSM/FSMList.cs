@@ -31,7 +31,7 @@ public class FSMList{
      {
 		 if (state.Priority>CurState.Priority)
 		 {
-	            list.Insert(0,state);
+	        list.Insert(0,state);
 		    return true;
 		 }
          else
@@ -56,15 +56,15 @@ public class FSMList{
      {
 		if(!CurState.Run())
 		{
-			  if(list.Count==1)
-			  {
-			     list[0]=FSMUnit.FSMNullState;
-			  }
-			  else
-			  {
-				  
-			     list.RemoveAt(0);
-			  }
+		  if(list.Count==1)
+		  {
+		     list[0]=FSMUnit.FSMNullState;
+		  }
+		  else
+		  {
+			  
+		     list.RemoveAt(0);
+		  }
 		 
 		}
 
