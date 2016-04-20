@@ -7,6 +7,7 @@ public class EntryPoint : MonoBehaviour {
 	//SkillManager m_skillManager = SkillManager.Instance;
 	ControllerManager m_controllerManager = ControllerManager.Instance;
 	ECObjectManager m_objectManager = ECObjectManager.Instance;
+	ECTimerManager m_timerManager = ECTimerManager.Instance;
 	ECHostPlayer m_host;
 
 	//test
@@ -17,6 +18,7 @@ public class EntryPoint : MonoBehaviour {
 
 		 InitGame();
 		 m_objectManager.Start();
+		 m_timerManager.Start();
 	}
 	
 	
@@ -45,5 +47,6 @@ public class EntryPoint : MonoBehaviour {
 	void Update () {
 		 m_controllerManager.Listen();
          m_objectManager.Update();
+         m_timerManager.Update();
 	} 
 }
