@@ -34,7 +34,7 @@ public class ECHostPlayer :  ECObject{
 	}
 
 	public override void Update () {
-		Debug.Log("~~~~~~~~Update~~~~~~~");
+		//Debug.Log("~~~~~~~~Update~~~~~~~");
 		m_FSMList.Run();
 	}
 

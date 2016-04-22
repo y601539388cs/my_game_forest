@@ -13,7 +13,7 @@ public class ECTimerManager  {
 	
 	// Update is called once per frame
 	public void Update () {
-	  Debug.Log("~~~~~~~~~~~~~~"+Time.realtimeSinceStartup);
-	  Debug.Log("~~~~~~~~~~~~~~"+Time.deltaTime);
+	 // Debug.Log("~~~~~~~~~~~~~~"+Time.realtimeSinceStartup);
+	//  Debug.Log("~~~~~~~~~~~~~~"+Time.deltaTime);
 	}
 }
