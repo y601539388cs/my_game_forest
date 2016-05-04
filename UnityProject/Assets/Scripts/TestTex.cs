@@ -1,15 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TestTex : MonoBehaviour {
+interface Imyface
+{
 
-	// Use this for initialization
-	void Start () {
-	
+	int Geta();
+	int S{get;set;}
+}
+
+public class TestTex :  Imyface{
+	public int Geta()
+	{
+		return 0;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	int s;
+	public int S{
+		get{return 0;}
+		set{ s=value;}
 	}
+
+	public void Run()
+	{
+		Debug.Log("~~~~111~~~");
+	}
+
 }

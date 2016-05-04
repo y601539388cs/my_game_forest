@@ -4,8 +4,9 @@ using System.Collections;
 public class FSMJoystickMove : FSMUnit {
 	
 	ECObject  m_object;
-	Vector3 m_speed;
+	float m_speed;
 	Vector3 m_dir;
+	public bool pressing = true;
 	public ECObject Mover
 	{
 	  get{return m_object;}
@@ -20,7 +21,7 @@ public class FSMJoystickMove : FSMUnit {
        FSMType = "joystickMove";
 	}
 	public FSMJoystickMove(){Init();}
-	public FSMJoystickMove(ECObject mover, Vector3 speed,Vector3 dir,RunHandlerDelegate func)
+	public FSMJoystickMove(ECObject mover, float speed,Vector3 dir,RunHandlerDelegate func)
 	{
 	   Init();
 	   this.Mover = mover;
@@ -28,25 +29,15 @@ public class FSMJoystickMove : FSMUnit {
 	   this.m_dir = dir;
 	   this.m_runHandle=func;
 	}
-	
-	bool IsNearDesPos()
-	{ 
-		
-	  
-	   return false;
 
-	}
 	public override bool Run()
 	{
-       if(IsNearDesPos())
-	   {
-			return false;
-	   }
+       
 	   
-	  // Vector3 newDir=(m_desPos-m_object.transform.position).normalized;
-
-	  //m_object.transform.position = m_object.transform.position+newDir*speed;
+	  //Vector3 newDir=(m_desPos-m_object.transform.position).normalized;
+	
+	   m_object.transform.position = m_object.transform.position+this.m_dir*m_speed*Time.deltaTime;
 	   m_runHandle();
-	   return true;
+	   return pressing;
 	}
 }

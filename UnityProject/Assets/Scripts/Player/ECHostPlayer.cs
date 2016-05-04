@@ -20,16 +20,30 @@ public class ECHostPlayer :  ECObject{
 	//控制器
 	private ECHostController m_ctroller = ECHostController.Instance;
 
-	
+
 	public void Move()
 	{
 
 	}
 
+
+
+   
+
 	public override void Start()
-	{
+	{	
+		bool bb=false;
+		if(bb)
+		{
+				Debug.Log("~~~~~~~~m_ctroller2~1~");
+				TestController m_ctroller2 = TestController.Instance;
+				Debug.Log("~~~~~~~~m_ctroller2~2~"+TestController.f);
+
+	
+		}
 		//初始化
 		transform = GameObject.Find("HostPlayer").transform;
+		
 		
 	}
 
