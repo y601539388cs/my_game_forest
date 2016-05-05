@@ -17,6 +17,14 @@ public class ControllerManager  {
 		m_listeners.Add(c);
 	}
 
+	public void Start()
+	{
+		for(int i=0;i<m_listeners.Count;++i)
+		{
+			m_listeners[i].Start();
+		}
+	}
+
 	public void Listen()
 	{
 		for(int i=0;i<m_listeners.Count;++i)

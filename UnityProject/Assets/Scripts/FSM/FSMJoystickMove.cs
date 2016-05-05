@@ -5,7 +5,8 @@ public class FSMJoystickMove : FSMUnit {
 	
 	ECObject  m_object;
 	float m_speed;
-	Vector3 m_dir;
+	public  Vector3 MoveDir;
+	
 	public bool pressing = true;
 	public ECObject Mover
 	{
@@ -26,7 +27,7 @@ public class FSMJoystickMove : FSMUnit {
 	   Init();
 	   this.Mover = mover;
 	   this.m_speed=speed;
-	   this.m_dir = dir;
+	   this.MoveDir = dir;
 	   this.m_runHandle=func;
 	}
 
@@ -35,9 +36,15 @@ public class FSMJoystickMove : FSMUnit {
        
 	   
 	  //Vector3 newDir=(m_desPos-m_object.transform.position).normalized;
-	
-	   m_object.transform.position = m_object.transform.position+this.m_dir*m_speed*Time.deltaTime;
-	   m_runHandle();
-	   return pressing;
+	   Vector3 ts=this.MoveDir*m_speed*Time.deltaTime;
+	   Debug.Log("~~FSMJoystickMove~~~~Run~~~~~~~~"+ts.x+" "+ts.y+"  "+ts.z);
+	  
+	   m_object.transform.position = m_object.transform.position+ts;
+	   if(m_runHandle!=null)
+	   {
+	   	  m_runHandle();
+	   }
+	   
+	   return  !pressing;
 	}
 }

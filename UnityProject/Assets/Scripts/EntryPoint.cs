@@ -19,6 +19,7 @@ public class EntryPoint : MonoBehaviour {
 		 InitGame();
 		 m_objectManager.Start();
 		 m_timerManager.Start();
+		 m_controllerManager.Start();
 	}
 	
 	

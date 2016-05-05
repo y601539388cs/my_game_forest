@@ -25,7 +25,9 @@ public class ECHostJoyStickController : ECController {
 	public Vector3 Up=new Vector3(0,1,0);
  	
  	private Vector3 m_origin = new Vector3(0,0,0);
-	public static ECHostJoyStickController Instance = new ECHostJoyStickController();
+
+ 	FSMJoystickMove m_joystickFSM;
+ 	public static ECHostJoyStickController Instance = new ECHostJoyStickController();
 
 	
 	//int a = b();
@@ -36,28 +38,35 @@ public class ECHostJoyStickController : ECController {
 	}
 
 	//希望以后可以改进为消息监听模式
-	public bool GetDir(ref Vector3 dir)
+	public override void Start()
+	{
+		Debug.Log("~~~~ECHostJoyStickController~~~~~Start~~~~~~");
+		Forward = ECHostPlayer.Instance.Forward;
+		m_joystickFSM = new FSMJoystickMove(ECHostPlayer.Instance,ECHostPlayer.Instance.Speed,Vector3.zero,null);
+	}
+
+	public bool GetDir(out Vector3 dir)
 	{	
 		bool flag=false;
-		if (Input.GetKeyDown(KeyCode.W)
+		if (Input.GetKeyDown(KeyCode.W))
 		{
 			m_origin+=m_forward;
 			flag=true;
 		} 
 
-		if (Input.GetKeyDown(KeyCode.S)
+		if (Input.GetKeyDown(KeyCode.S))
 		{
 			m_origin+=m_back;
 			flag=true;
 		} 
 
-		if (Input.GetKeyDown(KeyCode.A)
+		if (Input.GetKeyDown(KeyCode.A))
 		{
 			m_origin+=m_left;
 			flag=true;
 		} 
 
-		if (Input.GetKeyDown(KeyCode.D)
+		if (Input.GetKeyDown(KeyCode.D))
 		{
 			m_origin+=m_right;
 			flag=true;
@@ -69,39 +78,15 @@ public class ECHostJoyStickController : ECController {
 	public override void Listen()
 	{
 		//以后用命令表可以继续简化
+		//Debug.Log("~~Listen~~");
+		bool cango = GetDir(out m_joystickFSM.MoveDir);
+		m_joystickFSM.pressing=cango;
+		if(cango)
+		{	
+			Debug.Log("~~~~~~~~~~~~"+m_joystickFSM.MoveDir.x);
+		    ECHostPlayer.Instance.MyFSMList.Replace(m_joystickFSM);
+		}
 		
-		if (Input.GetKeyDown(KeyCode.D))
-	     {
-	     	
-	     	Vector3 pos = ECHostPlayer.Instance.transform.position;
-	     	pos.x=pos.x+0.2f;
-	     	FSMMove moveState = new FSMMove(ECHostPlayer.Instance,pos,ECHostPlayer.Instance.Move);
-	     	ECHostPlayer.Instance.MyFSMList.StrongPush(moveState);
-	     }
-	     else if (Input.GetKeyDown(KeyCode.A))
-	     {
-	     	ECHostPlayer hp = ECHostPlayer.Instance;
-	     	Debug.Log("~~~~~~~~~~~~~~~~`"+hp.test);
-	     	Vector3 pos = ECHostPlayer.Instance.transform.position;
-	     	pos.x=pos.x-0.2f;
-	     	FSMMove moveState = new FSMMove(ECHostPlayer.Instance,pos,ECHostPlayer.Instance.Move);
-	     	ECHostPlayer.Instance.MyFSMList.StrongPush(moveState);
-	     }
-	     else if (Input.GetKeyDown(KeyCode.A))
-	     {
-	     	ECHostPlayer hp = ECHostPlayer.Instance;
-	     	Debug.Log("~~~~~~~~~~~~~~~~`"+hp.test);
-	     	Vector3 pos = ECHostPlayer.Instance.transform.position;
-	     	pos.x=pos.x-0.2f;
-	     	FSMMove moveState = new FSMMove(ECHostPlayer.Instance,pos,ECHostPlayer.Instance.Move);
-	     	ECHostPlayer.Instance.MyFSMList.StrongPush(moveState);
-	     }
-	     else if (Input.GetKeyDown(KeyCode.S))
-	     {
-	     	 Debug.Log("~~~~~~~~~~s~~~~~~~~");
-	     	//m_fireBall.Born();
-	     	//m_fireBall_op.Born();
-	     }	
 	}
 
 }

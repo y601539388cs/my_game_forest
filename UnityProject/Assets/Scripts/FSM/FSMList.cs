@@ -18,7 +18,7 @@ public class FSMList{
      }
      public bool WeakPush(FSMUnit state)
      {
-		if (state.Priority>CurState.Priority)
+		if (state.Priority>=CurState.Priority)
 		{
 		    list.Insert(0,state);
 		    return true;
@@ -29,7 +29,7 @@ public class FSMList{
      
      public bool StrongPush(FSMUnit state)
      {
-		 if (state.Priority>CurState.Priority)
+		 if (state.Priority>=CurState.Priority)
 		 {
 	        list.Insert(0,state);
 		    return true;
@@ -43,7 +43,7 @@ public class FSMList{
 
      public bool Replace(FSMUnit state)
      {
-		if (state.Priority>CurState.Priority)
+		if (state.Priority>=CurState.Priority)
 		{
 		    list[0]=state;
 		    return true;

@@ -7,6 +7,7 @@ public class ECHostPlayer :  ECObject{
 		ECObjectManager.Instance.Add(this);
 	}
 	
+	public Vector3 Forward = new Vector3(0,0,1);
 	//状态机
 	FSMList m_FSMList = new FSMList();
 	public FSMList MyFSMList
@@ -18,9 +19,9 @@ public class ECHostPlayer :  ECObject{
 	public static ECHostPlayer Instance = new ECHostPlayer();
 	public int test=3;
 	//控制器
-	private ECHostController m_ctroller = ECHostController.Instance;
+	private ECHostJoyStickController m_ctroller = ECHostJoyStickController.Instance;
 
-
+	public float Speed = 1.0f;
 	public void Move()
 	{
 
