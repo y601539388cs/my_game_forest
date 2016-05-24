@@ -48,44 +48,56 @@ public class ECHostJoyStickController : ECController {
 	public bool GetDir(out Vector3 dir)
 	{	
 		bool flag=false;
-		if (Input.GetKeyDown(KeyCode.W))
+		if (Input.GetKey(KeyCode.W))
 		{
 			m_origin+=m_forward;
 			flag=true;
 		} 
 
-		if (Input.GetKeyDown(KeyCode.S))
+		if (Input.GetKey(KeyCode.S))
 		{
 			m_origin+=m_back;
 			flag=true;
 		} 
 
-		if (Input.GetKeyDown(KeyCode.A))
+		if (Input.GetKey(KeyCode.A))
 		{
 			m_origin+=m_left;
 			flag=true;
 		} 
 
-		if (Input.GetKeyDown(KeyCode.D))
+		if (Input.GetKey(KeyCode.D))
 		{
 			m_origin+=m_right;
 			flag=true;
 		} 
 		dir=m_origin.normalized;
 		m_origin=Vector3.zero;
+		
 		return flag;
 	}
+
+	bool m_firstSendMsg = true;
 	public override void Listen()
 	{
 		//以后用命令表可以继续简化
-		//Debug.Log("~~Listen~~");
+		
 		bool cango = GetDir(out m_joystickFSM.MoveDir);
 		m_joystickFSM.pressing=cango;
 		if(cango)
-		{	
-			Debug.Log("~~~~~~~~~~~~"+m_joystickFSM.MoveDir.x);
-		    ECHostPlayer.Instance.MyFSMList.Replace(m_joystickFSM);
+		{
+			
+			if(m_firstSendMsg)
+			{
+				ECHostPlayer.Instance.MyFSMList.Replace(m_joystickFSM);
+				m_firstSendMsg=false;
+			}
 		}
+		else 
+		{
+			m_firstSendMsg=true;
+		}
+		
 		
 	}
 

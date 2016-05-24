@@ -36,9 +36,9 @@ public class ECHostPlayer :  ECObject{
 		bool bb=false;
 		if(bb)
 		{
-				Debug.Log("~~~~~~~~m_ctroller2~1~");
-				TestController m_ctroller2 = TestController.Instance;
-				Debug.Log("~~~~~~~~m_ctroller2~2~"+TestController.f);
+			Debug.Log("~~~~~~~~m_ctroller2~1~");
+			TestController m_ctroller2 = TestController.Instance;
+			Debug.Log("~~~~~~~~m_ctroller2~2~"+TestController.f);
 
 	
 		}

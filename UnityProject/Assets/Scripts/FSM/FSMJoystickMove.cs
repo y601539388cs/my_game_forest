@@ -39,12 +39,27 @@ public class FSMJoystickMove : FSMUnit {
 	   Vector3 ts=this.MoveDir*m_speed*Time.deltaTime;
 	   Debug.Log("~~FSMJoystickMove~~~~Run~~~~~~~~"+ts.x+" "+ts.y+"  "+ts.z);
 	  
-	   m_object.transform.position = m_object.transform.position+ts;
+	   Vector3 tempVc = m_object.transform.position+ts;
+	   float tempy= ECUtility.GetSupportTerrainHeight(tempVc);
+
+	   if(tempy!=0)
+	   {
+	   	 tempVc.y=tempy;
+	   }
+
+	   m_object.transform.position = tempVc;
+
 	   if(m_runHandle!=null)
 	   {
 	   	  m_runHandle();
 	   }
-	   
+	   if(pressing)
+	   {
+	   	Debug.Log("~~~~~pressing!!!~~~~");
+	   }else
+	   {
+	   	Debug.Log("~~not~~~pressing!!!~~~~");
+	   }
 	   return  !pressing;
-	}
+	}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 }

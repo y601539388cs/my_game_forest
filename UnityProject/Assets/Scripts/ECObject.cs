@@ -7,6 +7,7 @@ public class ECObject  {
 	
 	public Transform transform;
 	
+	
 	public virtual void Start()
 	{
 

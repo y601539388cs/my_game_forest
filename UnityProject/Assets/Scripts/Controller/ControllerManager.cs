@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class ControllerManager  {
 
 	private ControllerManager()
-	{
+	{ 
 
 	}
 	public static ControllerManager Instance = new ControllerManager();

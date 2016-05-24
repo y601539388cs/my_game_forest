@@ -11,7 +11,7 @@ public enum FSMPRIORITYTYPE //所有的FSM优先级都在这里定义,每一个�
 
 public class FSMUnit  {
 	FSMPRIORITYTYPE priority=FSMPRIORITYTYPE.NORMAL;
-	protected string FSMType = "base";
+	public string FSMType = "base";
     public static  FSMUnit FSMNullState= new FSMUnit(FSMPRIORITYTYPE.NONE);
 	
 	public delegate void RunHandlerDelegate();

@@ -50,4 +50,9 @@ public class EntryPoint : MonoBehaviour {
          m_objectManager.Update();
          m_timerManager.Update();
 	} 
+
+
+	 void OnGUI() {
+	 //	Debug.Log("~~~~~~~~~OnGUI~~~~~~!");
+	 }
 }

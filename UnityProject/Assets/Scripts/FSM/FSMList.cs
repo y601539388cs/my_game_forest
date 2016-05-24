@@ -54,7 +54,7 @@ public class FSMList{
     
      public bool Run()
      {
-		if(!CurState.Run())
+		if(CurState.Run())
 		{
 		  if(list.Count==1)
 		  {
@@ -62,7 +62,6 @@ public class FSMList{
 		  }
 		  else
 		  {
-			  
 		     list.RemoveAt(0);
 		  }
 		 
