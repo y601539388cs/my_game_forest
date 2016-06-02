@@ -81,12 +81,13 @@ public class ECHostJoyStickController : ECController {
 	public override void Listen()
 	{
 		//以后用命令表可以继续简化
-		
-		bool cango = GetDir(out m_joystickFSM.MoveDir);
+		Vector3 outDir;
+		bool cango = GetDir(out outDir);
 		m_joystickFSM.pressing=cango;
 		if(cango)
 		{
 			
+			m_joystickFSM.MoveDir = outDir;
 			if(m_firstSendMsg)
 			{
 				ECHostPlayer.Instance.MyFSMList.Replace(m_joystickFSM);

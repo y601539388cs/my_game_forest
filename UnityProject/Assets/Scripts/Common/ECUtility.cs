@@ -15,7 +15,6 @@ public class ECUtility  {
 	{
 		RaycastHit hitInfo;
 		bool bRet=(fRadius==0)?Physics.Raycast(vPos,Vector3.down,out hitInfo, vPos.y+50,mask):Physics.SphereCast(vPos,fRadius, Vector3.down,out hitInfo, vPos.y+500,mask);
-		Debug.Log("~~~~~~GetSupportPlaneHeight~@@~~~~~"+hitInfo.point.y);
 		return bRet?hitInfo.point.y:0;
 	}
 }

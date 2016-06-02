@@ -5,7 +5,19 @@ public class FSMJoystickMove : FSMUnit {
 	
 	ECObject  m_object;
 	float m_speed;
-	public  Vector3 MoveDir;
+	private Vector3 m_moveDir;
+	public  Vector3 MoveDir
+	{
+		get{return m_moveDir;}
+		set{
+			if(m_object!=null)
+			{
+				Debug.Log("~~~~~~~~~~~"+value.x+"   "+value.y+"   "+value.z);
+				m_object.transform.rotation = Quaternion.LookRotation(value);
+			}
+			m_moveDir=value;
+		}
+	}
 	
 	public bool pressing = true;
 	public ECObject Mover
@@ -48,6 +60,7 @@ public class FSMJoystickMove : FSMUnit {
 	   }
 
 	   m_object.transform.position = tempVc;
+
 
 	   if(m_runHandle!=null)
 	   {
