@@ -16,12 +16,10 @@ public class ECObjectManager {
 	public void Add(ECObject obj)
 	{
 		m_objectList.Add(obj);
+		obj.Start();
 	}
 	public void Start () {
-		foreach(ECObject item in m_objectList)
-		{
-			item.Start();
-		}
+		
 	}
 	
 	// Update is called once per frame

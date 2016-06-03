@@ -8,7 +8,8 @@ public class EntryPoint : MonoBehaviour {
 	ControllerManager m_controllerManager = ControllerManager.Instance;
 	ECObjectManager m_objectManager = ECObjectManager.Instance;
 	ECTimerManager m_timerManager = ECTimerManager.Instance;
-	ECHostPlayer m_host;
+	CameraManager m_cameraManager = CameraManager.Instance;
+	ECWorldStageManager m_worldStageManager = ECWorldStageManager.Instance;
 
 	//test
 	//Skill_FireBall m_fireBall;
@@ -20,13 +21,16 @@ public class EntryPoint : MonoBehaviour {
 		 m_objectManager.Start();
 		 m_timerManager.Start();
 		 m_controllerManager.Start();
+		 m_cameraManager.Start();
+
 	}
 	
 	
 	void InitGame()
 	{
 		//
-		m_host = ECHostPlayer.Instance;
+		ECWorldStartStage  startStage = new ECWorldStartStage();
+		m_worldStageManager.LoadStage(startStage);
 
 		//test
 		// Transform root = GameObject.Find("Skill_Ball").transform;
@@ -49,6 +53,7 @@ public class EntryPoint : MonoBehaviour {
 		 m_controllerManager.Listen();
          m_objectManager.Update();
          m_timerManager.Update();
+         m_cameraManager.Update();
 	} 
 
 

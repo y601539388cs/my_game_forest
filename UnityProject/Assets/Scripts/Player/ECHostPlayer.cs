@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
 public class ECHostPlayer :  ECObject{
@@ -21,7 +22,7 @@ public class ECHostPlayer :  ECObject{
 	//控制器
 	private ECHostJoyStickController m_ctroller = ECHostJoyStickController.Instance;
 
-	public float Speed = 1.0f;
+	public float Speed = 6.0f;
 	public void Move()
 	{
 
@@ -36,11 +37,7 @@ public class ECHostPlayer :  ECObject{
 		bool bb=false;
 		if(bb)
 		{
-			Debug.Log("~~~~~~~~m_ctroller2~1~");
 			TestController m_ctroller2 = TestController.Instance;
-			Debug.Log("~~~~~~~~m_ctroller2~2~"+TestController.f);
-
-	
 		}
 		//初始化
 		transform = GameObject.Find("HostPlayer").transform;
