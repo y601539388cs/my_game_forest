@@ -21,7 +21,7 @@ public class TestTex :  Imyface{
 
 	public void Run()
 	{
-		Debug.Log("~~~~111~~~");
+		//Debug.Log("~~~~111~~~");
 	}
 
 }

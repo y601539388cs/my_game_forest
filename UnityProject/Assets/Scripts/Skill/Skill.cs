@@ -114,7 +114,7 @@ public abstract class Skill  {
     public virtual void Effect(){}
 
     public virtual void PlayOver(){
-    	Debug.Log("~~~~~~~~~~~~~~~~~"+m_id+"~~destory~");
+    	
     }
 
 

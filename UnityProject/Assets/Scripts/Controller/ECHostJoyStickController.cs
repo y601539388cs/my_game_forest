@@ -40,7 +40,6 @@ public class ECHostJoyStickController : ECController {
 	//希望以后可以改进为消息监听模式
 	public override void Start()
 	{
-		Debug.Log("~~~~ECHostJoyStickController~~~~~Start~~~~~~");
 		Forward = ECHostPlayer.Instance.Forward;
 		m_joystickFSM = new FSMJoystickMove(ECHostPlayer.Instance,ECHostPlayer.Instance.Speed,Vector3.zero,null);
 	}
@@ -48,6 +47,11 @@ public class ECHostJoyStickController : ECController {
 	public bool GetDir(out Vector3 dir)
 	{	
 		bool flag=false;
+		Vector3 forward = CameraManager.Instance.CurMainCamera.Root.forward;
+
+		m_forward = new Vector3( forward.x,0, forward.z);
+		
+
 		if (Input.GetKey(KeyCode.W))
 		{
 			m_origin+=m_forward;

@@ -43,7 +43,6 @@ public class Skill_FireBall: Skill {
 	public override void Run()
 	{
 		float x=m_root.position.x+1.0f*m_dir;
-		Debug.Log("~~~~~~~~~~~~"+m_dir+"~~~~"+x);
 		
 		m_root.position=new Vector3(x, m_root.position.y, m_root.position.z);
 

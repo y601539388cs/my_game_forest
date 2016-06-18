@@ -59,7 +59,7 @@ public class SkillManager {
         {
             m_curSkillList[i].FreshSkillScope();
         }  
-        Debug.Log("~~FreshSkillScope~~~"+m_curSkillList.Count);
+       
     }
 
     public void Run()
