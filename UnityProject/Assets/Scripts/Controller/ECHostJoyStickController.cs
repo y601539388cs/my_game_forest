@@ -49,7 +49,7 @@ public class ECHostJoyStickController : ECController {
 		bool flag=false;
 		Vector3 forward = CameraManager.Instance.CurMainCamera.Root.forward;
 
-		m_forward = new Vector3( forward.x,0, forward.z);
+		Forward = new Vector3( forward.x,0, forward.z);
 		
 
 		if (Input.GetKey(KeyCode.W))

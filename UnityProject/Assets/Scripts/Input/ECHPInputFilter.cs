@@ -2,11 +2,22 @@
 using System.Collections;
 
 public class ECHPInputFilter :ECInputFilter {
-	public ECHPInputFilter(ECInputCtrl ctrl)
-		:	base(e_InputFilter_Type.INPUTFILTER_TYPE_HP,ctrl)
-		{
+	public ECInputCtrl Ctrl ;
+	public ECHPInputFilter()
+	{
 
-		}
+	}
+
+
+	public override void Start()
+	{
+		#if UNITY_IPHONE || UNITY_ANDROID
+			Ctrl = ECTouchInputCtrl.Instance;
+		#else
+			Ctrl = ECMouseInputCtrl.Instance;
+		#endif
+			Ctrl.Init();
+	}
 
 	void UpdateToHandleInput()
 	{	
@@ -33,10 +44,22 @@ public class ECHPInputFilter :ECInputFilter {
 		}
 	}
 	
+	void UpdateInputCtrl(float fDeltaTime)
+	{
+		Ctrl.Tick(fDeltaTime);
+	}
+
 	public override bool Tick(float fDeltaTime)
 	{
+		
+		UpdateInputCtrl(fDeltaTime);
 		UpdateToHandleInput();
 		return true;
+	}
+
+	public override void  OnFrameEnd()
+	{
+		Ctrl.OnFrameEnd();
 	}
 
 }

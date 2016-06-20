@@ -101,27 +101,13 @@ public class ECInputCtrl  {
 	}
 
 	public TouchState []TouchStates = new TouchState[MaxTouchCount];
-	public ECInputFilter CurFilter;
-	public e_InputFilter_Type CurFilterType 
-	{ 
-		get{return (CurFilter == null)? e_InputFilter_Type.INPUTFILTER_TYPE_INVALID : CurFilter.Type;}
-
-	} 
 
 	public bool DisableCurFilter;
 
 	public float IdleTime = 0;
 
-	public bool SetCurFilter(e_InputFilter_Type eInputType)
-	{
-		if(CurFilterType== eInputType)
-		{
-			return true;
-		}
-
-		CurFilter=CreateFilter(eInputType);
-		return CurFilter!=null;
-	}
+	bool m_hasUpdate = false;
+	bool m_hasInit=false;
 
 	public virtual bool Init()
 	{
@@ -130,47 +116,30 @@ public class ECInputCtrl  {
 		{
 			TouchStates[i] = new TouchState();
 		}
-
-		SetCurFilter(e_InputFilter_Type.INPUTFILTER_TYPE_HP);
-
+		m_hasInit=true;
 		return true;
 	}
 
 	public bool Tick(float fDeltaTime)
-	{
+	{	
+
 		 bool bRet = true;
 
-		 if(!TickTouchStates(fDeltaTime))
+		 if(!m_hasUpdate && !TickTouchStates(fDeltaTime))
 		 	bRet = false;
-
-		 if(!DisableCurFilter && CurFilter!=null && !CurFilter.Tick(fDeltaTime))
-		 	bRet=false;
-
+		 m_hasUpdate=true;
 		 return bRet;
 	}
 
+	public void OnFrameEnd()
+	{
+		m_hasUpdate=false;
+	} 
 
 	public bool OnLeaveGameWorld()
 	{
 		DisableCurFilter=false;
 		return true;
-	}
-
-
-	protected ECInputFilter CreateFilter(e_InputFilter_Type inPutType)
-	{
-		switch(inPutType)
-		{
-			case e_InputFilter_Type.INPUTFILTER_TYPE_HP:
-				return new ECHPInputFilter(this);
-			default:
-				return null;
-		}
-	}
-
-	protected bool InitFilter()
-	{
-		return SetCurFilter(e_InputFilter_Type.INPUTFILTER_TYPE_HP);
 	}
 
 

@@ -4,7 +4,7 @@ using System.Collections;
 #if UNITY_IPHONE || UNITY_ANDROID
 public class ECTouchInputCtrl : ECInputCtrl {
 
-
+	public static ECTouchInputCtrl Instance  = new ECTouchInputCtrl();
 	protected override bool TickTouchStates(float fDeltaTime)
 	{
 		TouchCount = 0;

@@ -65,6 +65,7 @@ public class EntryPoint : MonoBehaviour {
 	void LateUpdate()
 	{
 		 m_cameraManager.Update();
+		  m_inputManager.LateTick();
 	}
 
 	 void OnGUI() {

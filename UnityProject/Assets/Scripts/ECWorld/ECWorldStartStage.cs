@@ -20,6 +20,9 @@ public class ECWorldStartStage : ECWorldStage {
 	   CameraManager.Instance.CurMainCamera = moveCam;
 	   CameraManager.Instance.RegisterCamera(moveCam);
 
+	   //输入
+	   ECHPInputFilter hp_input = new ECHPInputFilter();
+	   ECInputManager.Instance.AddListeners(hp_input);
 
 
 	}

@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ECInputManager  {
 
 	public static ECInputManager Instance = new ECInputManager();
-	ECInputCtrl ctrl;
+	//ECInputCtrl ctrl;
+
+	private List<ECInputFilter>  m_listeners = new List<ECInputFilter>();
+
+	public void AddListeners(ECInputFilter inputFilter)
+	{
+		inputFilter.Start();
+		m_listeners.Add(inputFilter);
+	}
 
 	void Init()
 	{
-		#if UNITY_IPHONE || UNITY_ANDROID
-			ctrl = new ECTouchInputCtrl();
-		#else
-			ctrl = new ECMouseInputCtrl();
-		#endif
-			ctrl.Init();
+		
 	}	
 	public void Start()
 	{
@@ -22,7 +26,18 @@ public class ECInputManager  {
 
 	public void Tick(float fDeltaTime)
 	{
-		ctrl.Tick(fDeltaTime);
+		for(int i=0;i<m_listeners.Count;++i)
+		{
+			m_listeners[i].Tick(fDeltaTime);
+		}
+	}
+
+	public void LateTick()
+	{
+		for(int i=0;i<m_listeners.Count;++i)
+		{
+			m_listeners[i].OnFrameEnd();
+		}
 	}
 
 }

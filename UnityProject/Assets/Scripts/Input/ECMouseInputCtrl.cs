@@ -11,6 +11,7 @@ public enum e_MouseInputID_Type
 
 public class ECMouseInputCtrl : ECInputCtrl {
 
+	public static ECMouseInputCtrl Instance  = new ECMouseInputCtrl();
 	Touch2 m_mouseTouch;
 	bool UpdateMouseTouch()
 	{
