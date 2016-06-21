@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class FSMList{
      List<FSMUnit> list = new List<FSMUnit>();
+     FSMUnit m_lastState;
      public FSMUnit CurState
      {
 	    get{return list[0];}
@@ -11,6 +12,7 @@ public class FSMList{
      void Init()
      {
 		 list.Add(FSMUnit.FSMNullState);
+		 m_lastState=CurState;
      }
      public FSMList()
      {
@@ -18,7 +20,7 @@ public class FSMList{
      }
      public bool WeakPush(FSMUnit state)
      {
-		if (state.Priority>=CurState.Priority)
+		if (state.Priority>CurState.Priority)
 		{
 		    list.Insert(0,state);
 		    return true;
@@ -29,7 +31,7 @@ public class FSMList{
      
      public bool StrongPush(FSMUnit state)
      {
-		 if (state.Priority>=CurState.Priority)
+		 if (state.Priority>CurState.Priority)
 		 {
 	        list.Insert(0,state);
 		    return true;
@@ -45,7 +47,14 @@ public class FSMList{
      {
 		if (state.Priority>=CurState.Priority)
 		{
-		    list[0]=state;
+			if(list[0].Priority==FSMPRIORITYTYPE.NONE)
+			{
+				 list.Insert(0,state);
+			}
+			else
+			{
+				list[0]=state;
+			}
 		    return true;
 		}
 		return false;
@@ -53,18 +62,16 @@ public class FSMList{
      }
     
      public bool Run()
-     {
-		if(CurState.Run())
-		{
-		  if(list.Count==1)
-		  {
-		     list[0]=FSMUnit.FSMNullState;
-		  }
-		  else
-		  {
-		     list.RemoveAt(0);
-		  }
-		 
+     {	
+     	if(m_lastState!=CurState)
+     	{
+     		CurState.Update();
+     		m_lastState = CurState;
+     	}
+
+     	if(CurState.Run())
+		{	
+		    list.RemoveAt(0);
 		}
 
         return true;		

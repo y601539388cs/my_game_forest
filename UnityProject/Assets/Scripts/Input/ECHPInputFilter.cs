@@ -9,6 +9,7 @@ public class ECHPInputFilter :ECInputFilter {
 	}
 
 
+	FSMJump m_jumpFSM;
 	public override void Start()
 	{
 		#if UNITY_IPHONE || UNITY_ANDROID
@@ -17,12 +18,35 @@ public class ECHPInputFilter :ECInputFilter {
 			Ctrl = ECMouseInputCtrl.Instance;
 		#endif
 			Ctrl.Init();
+		m_jumpFSM = new FSMJump(ECHostPlayer.Instance,null);
 	}
 
+
+
+	ECMoveCamera cam;
+	void UpdateKeyBoard()
+	{
+		if (Input.GetKey(KeyCode.Space))
+		{
+			ECHostPlayer.Instance.MyFSMList.WeakPush(m_jumpFSM);
+		}
+	}
+
+	void UpdateScrollWheelInput()
+	{	
+		if(Ctrl.ScrollAxis>0)
+		{
+			cam.Move(-0.25f);
+		}
+		else if(Ctrl.ScrollAxis<0)
+		{
+			cam.Move(0.25f);
+		}
+	}
 	void UpdateToHandleInput()
 	{	
 		
-		ECMoveCamera cam = CameraManager.Instance.CurMainCamera as ECMoveCamera;
+		cam = CameraManager.Instance.CurMainCamera as ECMoveCamera;
 		if(cam==null){return;}
 		if(Ctrl.TouchCount==1)
 		{
@@ -42,6 +66,9 @@ public class ECHPInputFilter :ECInputFilter {
 				}
 			}
 		}
+
+		UpdateScrollWheelInput();
+		UpdateKeyBoard();
 	}
 	
 	void UpdateInputCtrl(float fDeltaTime)

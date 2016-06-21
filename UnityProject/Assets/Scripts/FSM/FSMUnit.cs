@@ -4,9 +4,11 @@ using System.Collections;
 
 public enum FSMPRIORITYTYPE //所有的FSM优先级都在这里定义,每一个类应该有这张表并且具有继承关系
 {
-   NONE = 0,
+   NONE = -1,
+   IDLE=0,
    NORMAL=1,
    ACTION_MOVE=2,
+   ACTION_JUMP=3,
 }
 
 public class FSMUnit  {
@@ -34,6 +36,7 @@ public class FSMUnit  {
 	{
 	    this.Priority= priority;
 	}
-	public virtual bool Run(){return true;}
-		
+	public virtual bool Run(){return false;}
+	
+	public virtual bool Update(){return true;}
 }

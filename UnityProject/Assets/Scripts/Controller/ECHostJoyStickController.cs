@@ -94,7 +94,7 @@ public class ECHostJoyStickController : ECController {
 			m_joystickFSM.MoveDir = outDir;
 			if(m_firstSendMsg)
 			{
-				ECHostPlayer.Instance.MyFSMList.Replace(m_joystickFSM);
+				ECHostPlayer.Instance.MyFSMList.WeakPush(m_joystickFSM);
 				m_firstSendMsg=false;
 			}
 		}

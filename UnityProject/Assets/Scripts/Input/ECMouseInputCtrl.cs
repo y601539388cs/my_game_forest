@@ -13,6 +13,7 @@ public class ECMouseInputCtrl : ECInputCtrl {
 
 	public static ECMouseInputCtrl Instance  = new ECMouseInputCtrl();
 	Touch2 m_mouseTouch;
+	
 	bool UpdateMouseTouch()
 	{
 		m_mouseTouch.phase = TouchPhase.Canceled;
@@ -24,7 +25,7 @@ public class ECMouseInputCtrl : ECInputCtrl {
 			m_mouseTouch.phase = TouchPhase.Ended;
 		}
 		else if(Input.GetMouseButton((int)e_MouseInputID_Type.Left)||Input.GetMouseButton((int)e_MouseInputID_Type.Left))
-		{
+		{  
 			m_mouseTouch.phase = TouchPhase.Moved;
 		}
 
@@ -36,11 +37,22 @@ public class ECMouseInputCtrl : ECInputCtrl {
 		}
 
 		return bHasMouseTouch;
-	}				
-	protected override bool TickTouchStates(float fDeltaTime)
+	}	
+
+	bool UpdateScrollWheel()
+	{
+		ScrollAxis = Input.GetAxis("Mouse ScrollWheel");
+		if(ScrollAxis!=0)
+		{
+			return true;
+		}
+		return false;
+	}		
+	protected override bool TickInner(float fDeltaTime)
 	{
 		TouchCount = 0;
 		bool hasTouch =  UpdateMouseTouch();
+
 		if(hasTouch)
 		{
 			TouchStates[TouchCount].Switch();
@@ -55,6 +67,7 @@ public class ECMouseInputCtrl : ECInputCtrl {
 			IdleTime=IdleTime+fDeltaTime;
 		}
 
+		UpdateScrollWheel();
 		return true;
 	}
 }

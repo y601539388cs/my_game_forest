@@ -105,7 +105,8 @@ public class ECInputCtrl  {
 	public bool DisableCurFilter;
 
 	public float IdleTime = 0;
-
+	public  float ScrollAxis=0;
+	
 	bool m_hasUpdate = false;
 	bool m_hasInit=false;
 
@@ -125,7 +126,7 @@ public class ECInputCtrl  {
 
 		 bool bRet = true;
 
-		 if(!m_hasUpdate && !TickTouchStates(fDeltaTime))
+		 if(!m_hasUpdate && !TickInner(fDeltaTime))
 		 	bRet = false;
 		 m_hasUpdate=true;
 		 return bRet;
@@ -143,7 +144,7 @@ public class ECInputCtrl  {
 	}
 
 
-	protected virtual bool TickTouchStates(float fDeltaTime)
+	protected virtual bool TickInner(float fDeltaTime)
 	{
 		return true;
 	}

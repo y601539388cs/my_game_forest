@@ -6,7 +6,7 @@ public class ECMoveCamera:ECCamera  {
 	
 	
 	
-	Vector3 m_offeset = new Vector3(0,0,0);
+	Vector3 m_offeset = new Vector3(0,1.5f,0);
 	float OFFSETANGLE_UP=30;
 	public override void Start()
 	{
@@ -55,4 +55,15 @@ public class ECMoveCamera:ECCamera  {
 
 	}
 
+	public void Move(float delta)
+	{
+		Vector3 hostpos = m_root.position-m_diff;
+		m_diff=m_diff+m_diff.normalized*delta;
+
+		float distance = m_diff.magnitude;
+
+		if(distance>=12||distance<1.5)
+			return;
+		m_root.position = hostpos+m_diff;
+	}
 }

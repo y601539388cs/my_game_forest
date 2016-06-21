@@ -4,17 +4,18 @@ using System.Collections;
 public class FSMJoystickMove : FSMUnit {
 	
 	ECObject  m_object;
+	
 	float m_speed;
-	private Vector3 m_moveDir;
+	public float Speed{
+		get{return m_speed;}
+		set{m_speed=value;}
+	}
+
+	Vector3 m_moveDir;
 	public  Vector3 MoveDir
 	{
 		get{return m_moveDir;}
-		set{
-			if(m_object!=null)
-			{
-				//Debug.Log("~~~~~~~~~~~"+value.x+"   "+value.y+"   "+value.z);
-				m_object.transform.rotation = Quaternion.LookRotation(value);
-			}
+		set{	
 			m_moveDir=value;
 		}
 	}
@@ -38,7 +39,7 @@ public class FSMJoystickMove : FSMUnit {
 	{
 	   Init();
 	   this.Mover = mover;
-	   this.m_speed=speed;
+	   this.Speed=speed;
 	   this.MoveDir = dir;
 	   this.m_runHandle=func;
 	}
@@ -46,9 +47,11 @@ public class FSMJoystickMove : FSMUnit {
 	public override bool Run()
 	{
        
+	   m_object.transform.rotation = Quaternion.LookRotation(m_moveDir);
+	   m_object.MoveDir = m_moveDir;
+	   m_object.Speed= m_speed;
 	   
-	  //Vector3 newDir=(m_desPos-m_object.transform.position).normalized;
-	   Vector3 ts=this.MoveDir*m_speed*Time.deltaTime;
+	   Vector3 ts=this.MoveDir*Speed*Time.deltaTime;
 	  // Debug.Log("~~FSMJoystickMove~~~~Run~~~~~~~~"+ts.x+" "+ts.y+"  "+ts.z);
 	  
 	   Vector3 tempVc = m_object.transform.position+ts;

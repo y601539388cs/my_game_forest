@@ -24,7 +24,10 @@ public class ECWorldStartStage : ECWorldStage {
 	   ECHPInputFilter hp_input = new ECHPInputFilter();
 	   ECInputManager.Instance.AddListeners(hp_input);
 
-
+	   //人物出事状态
+	   FSMStand stander = new FSMStand(ECHostPlayer.Instance);
+	   ECHostPlayer.Instance.MyFSMList.WeakPush(stander);
+				
 	}
 	
 	// Update is called once per frame

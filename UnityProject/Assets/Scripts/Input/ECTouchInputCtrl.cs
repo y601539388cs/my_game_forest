@@ -5,7 +5,7 @@ using System.Collections;
 public class ECTouchInputCtrl : ECInputCtrl {
 
 	public static ECTouchInputCtrl Instance  = new ECTouchInputCtrl();
-	protected override bool TickTouchStates(float fDeltaTime)
+	protected override bool TickInner(float fDeltaTime)
 	{
 		TouchCount = 0;
 		int iTouchCount = Input.touchCount;
